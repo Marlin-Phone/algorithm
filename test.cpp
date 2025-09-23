@@ -27,34 +27,23 @@ using namespace std;
 // const int MOD = 1e9 + 7;
 // const int N = 1e6 + 10;
 
-priority_queue<int> a;                            // 大根堆
-priority_queue<int, vector<int>, greater<int>> b; // 小根堆
+int C[1000][1000] = {0};
 void solve() {
-    int n, k;
-    cin >> n >> k;
-    vector<int> nums(n);
-    for (int i = 0; i < n; i++) {
-        cin >> nums[i];
+    int n = 10;
+    for (int i = 0; i <= n; i++) {
+        C[i][0] = 1;
+        C[i][i] = 1;
     }
-    for (int i = 0; i < n; i++) {
-        if (b.empty() || nums[i] >= b.top()) {
-            b.push(nums[i]);
-        } else {
-            a.push(nums[i]);
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            C[i][j] = C[i - 1][j - 1] + C[i - 1][j];
         }
-        while (b.size() > k) {
-            a.push(b.top());
-            b.pop();
+    }
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= i; j++) {
+            cout << C[i][j] << " ";
         }
-        while (b.size() < k && !a.empty()) {
-            b.push(a.top());
-            a.pop();
-        }
-        if (b.size() >= k) {
-            cout << b.top() << endl;
-        } else {
-            cout << "Not enough elements" << endl;
-        }
+        cout << endl;
     }
 }
 
