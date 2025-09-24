@@ -22,7 +22,7 @@
 
 vp XCPC 的省赛、邀请赛、区域赛等按照场次放在了[ACM-ICPC](/ACM-ICPC/)文件夹下。
 
-我的代码模板(CPH 每次创建的模板)为[Template](/Template.cpp)
+我的代码模板(CPH 每次创建的模板)为[Template](/Template.cpp)  
 以及我的[对拍模板](/对拍/)
 
 ---
