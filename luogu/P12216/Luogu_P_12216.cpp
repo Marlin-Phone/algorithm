@@ -1,6 +1,6 @@
+#include <bits/stdc++.h>
 // #pragma GCC optimize("O3", "inline", "omit-frame-pointer", "unroll-loops",     \
 //                      "fast-math")
-#include <bits/stdc++.h>
 using namespace std;
 
 // Types
@@ -11,22 +11,16 @@ using namespace std;
 #define x first
 #define y second
 #define endl '\n'
-// Comparison
-#define is0(x) (fabs(x) < eps)
-#define feq(x, y) (is0(x - y))
-#define fge(x, y) (x > y || feq(x, y))
-#define fle(x, y) (x < y || feq(x, y))
-#define peq(a, b) (is0(a.x - b.x) && is0(a.y - b.y))
 // Math
 #define mod(x) ((x + MOD) % MOD)
-#define updiv(u, d) ((u + d - 1) / d)
 // Debug
 #define dbg(a) cout << "Dbg: " << #a << " = " << a << endl;
 
-// const db eps = 1e-8;
-// const int MOD = 1e9 + 7;
+// const double eps = 1e-8;
+const int MOD = 1e9 + 7;
 // const int N = 1e6 + 10;
 
+int n;
 vector<pair<int, int>> factorize(int n){
     vector<pair<int, int>> res;
     auto push = [&](int p){
@@ -48,34 +42,34 @@ vector<pair<int, int>> factorize(int n){
     }
     return res;
 }
+int euler_phi(int n){
+    if(n == 1) return 1;
+    if(n <= 0) return 0;
 
-
-// 计算欧拉函数 φ(n)
-int euler_phi(int n) {
-    if (n == 1) return 1;  // φ(1) = 1
-    if (n <= 0) return 0;  // 通常不考虑非正整数
-    
     vector<pair<int, int>> factors = factorize(n);
     int result = n;
-    
-    for (auto &factor : factors) {
+
+    for(auto &factor : factors){
         int p = factor.first;
-        result = result / p * (p - 1);  // 整数运算，无浮点
+        result = result / p * (p-1);
     }
-    
     return result;
+}
+int ksm(int x, int n){
+    int res = 1;
+    while(n){
+        if(n & 1){
+            res = mod(res * x);
+        }
+        x = mod(x * x);
+        n >>= 1;
+    }
+    return res;
 }
 
 void solve() {
-    int n;
-    cin >> n;
-    vector<pair<int, int>> factors = factorize(n); 
-    for(auto &[p, cnt] : factors){
-        cout << p << endl;
-        cout << cnt << endl;
-    }
-    cout << endl;
-    cout << euler_phi(n) << endl;
+    // cout << euler_phi(2023) << endl;
+    cout << ksm(2023, 2022) * euler_phi(2023) % MOD << endl;
 }
 
 signed main() {
