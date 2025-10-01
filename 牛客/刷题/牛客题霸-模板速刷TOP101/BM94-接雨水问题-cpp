@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+/**
+ * @nc app=nowcoder id=31c1aed01b394f0b8b7734de0324e00f topic=295 question=1002045 lang=C++
+ * 2025-10-01 22:51:11
+ * https://www.nowcoder.com/practice/31c1aed01b394f0b8b7734de0324e00f?tpId=295&tqId=1002045
+ * [BM94] 接雨水问题
+ */
+
+/** @nc code=start */
+
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * max water
+     * @param arr int整型vector the array
+     * @return long长整型
+     */
+    long long maxWater(vector<int>& arr) {
+        vector<int> left(arr.size(), 0);
+        vector<int> right(arr.size(), 0);
+        int height = 0;
+        for(int i = 1; i < arr.size(); i++){
+            height = arr[i - 1];
+            cout << height << " " << endl;
+            left[i] = max(left[i - 1], height);
+        }
+        for(int i = 0; i < arr.size(); i++){
+            cout << left[i] << " ";
+        }
+        cout << endl;
+        height = 0;
+        for(int i = arr.size() - 2; i >= 0; i--){
+            height = arr[i + 1];
+            cout << height << " " << endl;
+            right[i] = max(right[i + 1], height);
+        }
+        
+        for(int i = 0; i < arr.size(); i++){
+            cout << right[i] << " ";
+        }
+        cout << endl;
+        int ans = 0;
+        for(int i = 1; i < arr.size(); i++){
+            ans += max(min(left[i], right[i]) - arr[i], 0);
+        }
+        return ans;
+    }
+};
+
+/** @nc code=end */

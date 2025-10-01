@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+/**
+ * @nc app=nowcoder id=3d8d6a8e516e4633a2244d2934e5aa47 topic=295 question=2284579 lang=C++
+ * 2025-10-01 22:46:07
+ * https://www.nowcoder.com/practice/3d8d6a8e516e4633a2244d2934e5aa47?tpId=295&tqId=2284579
+ * [BM93] 盛水最多的容器
+ */
+
+/** @nc code=start */
+
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param height int整型vector 
+     * @return int整型
+     */
+    int maxArea(vector<int>& height) {
+        int left = 0, right = height.size() - 1, max_area = 0;
+        while(left < right){
+            max_area = max(max_area, min(height[left], height[right]) * (right - left));
+            if(height[left] < height[right]){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return max_area;
+    }
+};
+
+/** @nc code=end */
