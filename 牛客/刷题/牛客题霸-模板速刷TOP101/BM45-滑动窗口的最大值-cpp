@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+/**
+ * @nc app=nowcoder id=1624bc35a45c42c0bc17d17fa0cba788 topic=295 question=23458 lang=C++
+ * 2025-10-03 23:34:15
+ * https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=295&tqId=23458
+ * [BM45] 滑动窗口的最大值
+ */
+
+/** @nc code=start */
+
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param num int整型vector 
+     * @param size int整型 
+     * @return int整型vector
+     */
+    vector<int> maxInWindows(vector<int>& num, int size) {
+        vector<int> result;
+        // 边界条件处理
+        if (size <= 0 || size > num.size()) {
+            return result;
+        }
+        
+        deque<int> dq; // 存储索引的双端队列
+        
+        for (int i = 0; i < num.size(); i++) {
+            // 1. 移除队列中不在当前窗口的索引（从头部）
+            while (!dq.empty() && dq.front() <= i - size) {
+                dq.pop_front();
+            }
+            
+            // 2. 从尾部移除所有小于等于当前元素的索引
+            // 保持队列单调递减
+            while (!dq.empty() && num[dq.back()] <= num[i]) {
+                dq.pop_back();
+            }
+            
+            // 3. 将当前索引入队
+            dq.push_back(i);
+            
+            // 4. 当窗口形成后，记录最大值
+            if (i >= size - 1) {
+                result.push_back(num[dq.front()]);
+            }
+        }
+        
+        return result;
+    }
+};
+
+/** @nc code=end */
