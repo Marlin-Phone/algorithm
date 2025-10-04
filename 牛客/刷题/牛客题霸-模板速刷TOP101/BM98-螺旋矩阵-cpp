@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+/**
+ * @nc app=nowcoder id=7edf70f2d29c4b599693dc3aaeea1d31 topic=295 question=693 lang=C++
+ * 2025-10-04 20:27:41
+ * https://www.nowcoder.com/practice/7edf70f2d29c4b599693dc3aaeea1d31?tpId=295&tqId=693
+ * [BM98] 螺旋矩阵
+ */
+
+/** @nc code=start */
+
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param matrix int整型vector<vector<>> 
+     * @return int整型vector
+     */
+    int dx[4] = {0, 1, 0, -1};
+    int dy[4] = {1, 0, -1, 0};
+    vector<int> spiralOrder(vector<vector<int> >& matrix) {
+        if (matrix.empty()) return {};
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<vector<bool>>  visited(n, vector<bool>(m, false));
+        vector<int> ans;
+        int x = 0, y = 0;
+        int dir = 0;
+        for (int i = 0; i < n * m; i++) {
+            ans.push_back(matrix[x][y]);
+            visited[x][y] = true;
+            
+            // 计算下一步位置
+            int nx = x + dx[dir];
+            int ny = y + dy[dir];
+            
+            // 检查下一步是否有效
+            if (nx < 0 || nx >= n || ny < 0 || ny >= m || visited[nx][ny]) {
+                // 转向
+                dir = (dir + 1) % 4;
+                nx = x + dx[dir];
+                ny = y + dy[dir];
+            }
+            
+            x = nx;
+            y = ny;
+        }
+        
+    return ans;
+    }
+};
+
+/** @nc code=end */
