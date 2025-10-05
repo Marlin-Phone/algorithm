@@ -1,0 +1,63 @@
+/**
+ * @nc app=nowcoder id=513111e4477c4fad8f19f14d4cdf49dc topic=388 question=11077218 lang=C++
+ * 2025-10-05 22:49:25
+ * https://www.nowcoder.com/practice/513111e4477c4fad8f19f14d4cdf49dc?tpId=388&tqId=11077218
+ * [PEEK34] 【模板】并查集
+ */
+
+/** @nc code=start */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> fa, sz;
+void init(int n){
+    fa.resize(n + 1);
+    sz.resize(n + 1);
+    for(int i = 0; i <= n; i++){
+        fa[i] = i;
+        sz[i] = 1;
+    }
+}
+int find(int x){
+    return x == fa[x] ? x : fa[x] = find(fa[x]);
+}
+bool merge(int x, int y){
+    int fx = find(x), fy = find(y);
+    if(fx == fy){
+        return false;
+    }
+    fa[fx] = fy;
+    sz[fy] += sz[fx];
+    return true;
+}
+int size(int x){
+    return sz[find(x)];
+}
+
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    init(n);
+    for(int i = 1; i <= m; i++){
+        int op;
+        cin >> op;
+        if(op == 1){
+            int x, y;
+            cin >> x >> y;
+            merge(x, y);
+        }else if(op == 2){
+            int x, y;
+            cin >> x >> y;
+            cout << (find(x) == find(y) ? "YES" : "NO") << endl;
+        }else{
+            int x;
+            cin >> x;
+            cout << size(x) << endl;
+        }
+    }
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */
