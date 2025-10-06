@@ -1,0 +1,25 @@
+/**
+ * @nc app=nowcoder id=cbd0c91f821847a4bb1c5115405f6eda topic=385 question=10995371 lang=C++
+ * 2025-10-06 20:36:02
+ * https://www.nowcoder.com/practice/cbd0c91f821847a4bb1c5115405f6eda?tpId=385&tqId=10995371
+ * [BGN1] 小红喜欢1
+ */
+
+/** @nc code=start */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int arr[5];
+    for(int i = 0; i < 5; i++){
+        cin >> arr[i];
+        if(arr[i] == 1){
+            cout << i + 1 << endl;
+            return 0;
+        }
+    }
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */
