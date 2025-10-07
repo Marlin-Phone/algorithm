@@ -1,0 +1,40 @@
+/**
+ * @nc app=nowcoder id=5b3184b233f34fb39a7f259ae82eb42c topic=385 question=2300428 lang=C++
+ * 2025-10-07 21:47:48
+ * https://www.nowcoder.com/practice/5b3184b233f34fb39a7f259ae82eb42c?tpId=385&tqId=2300428
+ * [BGN5] 穷哈哈~
+ */
+
+/** @nc code=start */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int l = 0;
+    int max_len = 0;
+    for(int r = 0; r < n; r++){
+        char c = s[r];
+
+        if(c != 'a' && c != 'h'){
+            l = r + 1;
+            continue;
+        }
+
+        if(r > 0 && s[r] == s[r - 1]){
+            l = r;
+        }
+
+        max_len = max(max_len, r - l + 1);
+    }
+
+    cout << max_len << endl;
+    return 0;
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */
