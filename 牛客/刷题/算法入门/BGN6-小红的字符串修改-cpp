@@ -1,0 +1,39 @@
+/**
+ * @nc app=nowcoder id=66e0054ff6b345afa47bcd4e8ceb72d7 topic=385 question=11183285 lang=C++
+ * 2025-10-08 19:34:53
+ * https://www.nowcoder.com/practice/66e0054ff6b345afa47bcd4e8ceb72d7?tpId=385&tqId=11183285
+ * [BGN6] 小红的字符串修改
+ */
+
+/** @nc code=start */
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    string s, t;
+    cin >> s;
+    cin >> t;
+    int min_num = 1e9;
+    for(int i = 0; i + s.size() <= t.size(); i++){
+        int sum = 0;
+        for(int j = 0; j < s.size(); j++){
+            char c1 = t[i + j];
+            char c2 = s[j];
+            if(c1 == c2){
+                continue;
+            }else{
+                int temp_min = min((c1 - c2 + 26) % 26, (c2 - c1 + 26) % 26);
+                // cout << "temp_min = " << temp_min << endl;
+                sum += temp_min;
+            }
+        }
+        // cout << "sum = " << sum << endl;
+        min_num = min(min_num, sum);
+    }
+    cout << min_num << endl;
+    return 0;
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */

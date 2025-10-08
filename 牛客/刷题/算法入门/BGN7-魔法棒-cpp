@@ -1,0 +1,33 @@
+/**
+ * @nc app=nowcoder id=976bd95dda8f4430b512d0c39bd9f106 topic=385 question=11159395 lang=C++
+ * 2025-10-08 19:54:35
+ * https://www.nowcoder.com/practice/976bd95dda8f4430b512d0c39bd9f106?tpId=385&tqId=11159395
+ * [BGN7] 魔法棒
+ */
+
+/** @nc code=start */
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+signed main() {
+    int t = 1;
+    cin >> t;
+    while(t--){
+        int x;
+        cin >> x;
+        if(x > 14){
+            cout << "Yes" << endl;
+        }else{
+            if(x == 1 || x == 4 || x == 7 || x == 10 || x == 13 || x == 9 || x == 12){
+                cout << "Yes" << endl;
+            }else{
+                cout << "No" << endl;
+            }
+        }
+    }
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */
