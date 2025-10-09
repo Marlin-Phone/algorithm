@@ -1,6 +1,6 @@
+#include <bits/stdc++.h>
 // #pragma GCC optimize("O3", "inline", "omit-frame-pointer", "unroll-loops",     \
 //                      "fast-math")
-#include <bits/stdc++.h>
 using namespace std;
 
 // Types
@@ -11,28 +11,27 @@ using namespace std;
 #define x first
 #define y second
 #define endl '\n'
-// Comparison
-#define is0(x) (fabs(x) < eps)
-#define feq(x, y) (is0(x - y))
-#define fge(x, y) (x > y || feq(x, y))
-#define fle(x, y) (x < y || feq(x, y))
-#define peq(a, b) (is0(a.x - b.x) && is0(a.y - b.y))
 // Math
 #define mod(x) ((x + MOD) % MOD)
-#define updiv(u, d) ((u + d - 1) / d)
 // Debug
 #define dbg(a) cout << "Dbg: " << #a << " = " << a << endl;
 
-// const db eps = 1e-8;
-// const int MOD = 1e9 + 7;
+// const double eps = 1e-8;
+int MOD = 1e9 + 7;
 // const int N = 1e6 + 10;
 
-int a, b, c;
-
+int type, n, m;
 
 void solve() {
-    cin >> a >> b >> c;
-    
+    cin >> type >> n >> m >> MOD;
+    int start = n - 2 * m + 2;
+    int end = n - m + 1;
+
+    int ans = 1 % MOD;
+    for(int i = start; i <= end; i++){
+        ans = (ans * (i % MOD)) % MOD;
+    }
+    cout << ans << endl;
 }
 
 signed main() {

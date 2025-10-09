@@ -1,6 +1,6 @@
+#include <bits/stdc++.h>
 // #pragma GCC optimize("O3", "inline", "omit-frame-pointer", "unroll-loops",     \
 //                      "fast-math")
-#include <bits/stdc++.h>
 using namespace std;
 
 // Types
@@ -11,28 +11,38 @@ using namespace std;
 #define x first
 #define y second
 #define endl '\n'
-// Comparison
-#define is0(x) (fabs(x) < eps)
-#define feq(x, y) (is0(x - y))
-#define fge(x, y) (x > y || feq(x, y))
-#define fle(x, y) (x < y || feq(x, y))
-#define peq(a, b) (is0(a.x - b.x) && is0(a.y - b.y))
 // Math
 #define mod(x) ((x + MOD) % MOD)
-#define updiv(u, d) ((u + d - 1) / d)
 // Debug
 #define dbg(a) cout << "Dbg: " << #a << " = " << a << endl;
 
-// const db eps = 1e-8;
+// const double eps = 1e-8;
 // const int MOD = 1e9 + 7;
 // const int N = 1e6 + 10;
 
-int a, b, c;
-
+int n, r;
+int n1(int n){
+    if(n == 0 || n == 1){
+        return 1;
+    }
+    return n*n1(n - 1);
+}
+int C(int n, int m){ // n!/(m! * (n - m)!)
+    return n1(n)/(n1(m)*n1(n-m));
+}
 
 void solve() {
-    cin >> a >> b >> c;
-    
+    cin >> n >> r;
+    int ans = pow(r, n);
+    auto func = [&](int r){
+        int sum = 0;
+        for(int k = 0; k <= r; k++){
+            sum += pow(-1, k) * C(r, k) * pow(r - k, n);
+        }
+        return sum;
+    };
+    int temp = func(r);
+    cout << temp << endl;
 }
 
 signed main() {
