@@ -1,0 +1,20 @@
+/**
+ * @nc app=nowcoder id=ee732bec4f174cd9b4abc6427ba90584 topic=385 question=11254607 lang=C++
+ * 2025-10-09 22:49:21
+ * https://www.nowcoder.com/practice/ee732bec4f174cd9b4abc6427ba90584?tpId=385&tqId=11254607
+ * [BGN43] 最大公因数与最小公倍数
+ */
+
+/** @nc code=start */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+    cout << __gcd(a, b) << " " << a * b / __gcd(a, b) << endl;
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */
