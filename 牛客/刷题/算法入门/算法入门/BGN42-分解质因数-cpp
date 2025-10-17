@@ -1,0 +1,32 @@
+/**
+ * @nc app=nowcoder id=35723516d6f841ca8869ecbcf3ddacaf topic=385 question=11224914 lang=C++
+ * 2025-10-17 03:02:08
+ * https://www.nowcoder.com/practice/35723516d6f841ca8869ecbcf3ddacaf?tpId=385&tqId=11224914
+ * [BGN42] 分解质因数
+ */
+
+/** @nc code=start */
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+signed main() {
+    int n;
+    cin >> n;
+    vector<int> res;
+    for(int i = 2; i * i <= n; i++){
+        while(n % i == 0){
+            n /= i;
+            res.push_back(i);
+        }
+    }
+    if(n){
+        res.push_back(n);
+    }
+    for(auto it : res){
+        cout << it << " ";
+    }
+}
+// 64 位输出请用 printf("%lld")
+
+/** @nc code=end */
